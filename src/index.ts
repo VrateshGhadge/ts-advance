@@ -1,21 +1,21 @@
-// interface User {
-// 	name: string;
-// 	age: number;
-// }
+interface MainUser {
+	name: string;
+	age: number;
+}
 
-// function sumOfAge(user1: User, user2: User) {
-//   return user1.age + user2.age;
-// };
+function sumOfAge(user1: MainUser, user2: MainUser) {
+  return user1.age + user2.age;
+};
 
-// // Example usage
-// const result = sumOfAge({
-// 	name: "satyarth",
-// 	age: 20
-// }, {
-// 	name: "raman",
-// 	age: 21
-// });
-// console.log(result); 
+// Example usage
+const result = sumOfAge({
+	name: "satyarth",
+	age: 20
+}, {
+	name: "raman",
+	age: 21
+});
+console.log(result); 
 
 
 //  ---------------------------------------------------------------------------
