@@ -15,8 +15,6 @@ export type UserProfileUpdate = z.infer<typeof userProfileSchema>;
 
 app.put("/user", (req, res) => {
   const { success } = userProfileSchema.safeParse(req.body);
-  const updateBody: UserProfileUpdate = req.body; // how to assign a type to updateBody?
-
   if (!success) {
     res.status(411).json({});
     return
@@ -25,6 +23,26 @@ app.put("/user", (req, res) => {
   res.json({
     message: "User updated"
   })
+});
+
+app.use(express.json());
+
+app.put("/user", (req, res) => {
+  const result = userProfileSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return res.status(400).json({
+      errors: result.error.flatten()
+    });
+  }
+
+  const updateBody = result.data; 
+
+  
+  res.json({
+    message: "User updated",
+    data: updateBody
+  });
 });
 
 app.listen(3000);
